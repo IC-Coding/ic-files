@@ -1,4 +1,15 @@
 use std::fs;
+use std::process::Command;
+
+//get home directory
+pub fn get_home() -> String {
+    let user = Command::new("whoami").output().expect("failed to execute process").stdout;
+    let user_string = String::from_utf8_lossy(&user).replace("\n","");
+
+    "/home/".to_owned() + &user_string
+
+}
+
 
 //list files and folders in dir
 pub fn list(path: &str, show_hidden: bool) -> Vec<String> {
