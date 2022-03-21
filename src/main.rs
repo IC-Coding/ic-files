@@ -1,5 +1,5 @@
 
 mod dir;
 fn main() {
-    println!("{}", dir::get_home());
+    println!("{:?}", dir::mkdir(format!("{}{}",dir::get_home(), "/test").as_str()));
 }

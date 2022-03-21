@@ -29,3 +29,8 @@ pub fn list(path: &str, show_hidden: bool) -> Vec<String> {
 
     return result;
 }
+
+pub fn mkdir(dir_path: &str) -> std::io::Result<()> {
+    fs::create_dir(dir_path)?;
+    Ok(())
+}
