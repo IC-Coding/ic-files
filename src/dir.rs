@@ -10,6 +10,10 @@ pub fn list(path: &str, show_hidden: bool) -> Vec<String> {
             result.push(path.unwrap().path().display().to_string());
         }
 
+        else if path.as_ref().unwrap().path().display().to_string().contains("./.") == false {
+            result.push(path.unwrap().path().display().to_string());
+        }
+
     }
 
     return result;
