@@ -1,6 +1,7 @@
 use std::fs;
 use std::process::Command;
 
+
 //get home directory
 pub fn get_home() -> String {
     let user = Command::new("whoami").output().expect("failed to execute process").stdout;
@@ -30,7 +31,14 @@ pub fn list(path: &str, show_hidden: bool) -> Vec<String> {
     return result;
 }
 
-pub fn mkdir(dir_path: &str) -> std::io::Result<()> {
+//make directory
+pub fn mk(dir_path: &str) -> std::io::Result<()> {
     fs::create_dir(dir_path)?;
     Ok(())
+}
+
+//delete directory and its contents
+pub fn rm(dir_path: &str) -> String {
+    let err = Command::new("rm").args(["-rf",dir_path]).output().expect("failed to execute process").stderr;
+    String::from_utf8_lossy(&err).to_string()
 }
