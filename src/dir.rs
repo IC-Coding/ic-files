@@ -42,3 +42,15 @@ pub fn rm(dir_path: &str) -> String {
     let err = Command::new("rm").args(["-rf",dir_path]).output().expect("failed to execute process").stderr;
     String::from_utf8_lossy(&err).to_string()
 }
+
+//move directory and its contents
+pub fn mv(old_dir_path: &str, new_dir_path: &str) -> String {
+    let err = Command::new("mv").args([old_dir_path,new_dir_path]).output().expect("failed to execute process").stderr;
+    String::from_utf8_lossy(&err).to_string()
+}
+
+//copy directory to another location
+pub fn cp(orginal_path: &str, copy_path: &str) -> String {
+    let err = Command::new("cp").args(["-r",orginal_path,copy_path]).output().expect("failed to execute process").stderr;
+    String::from_utf8_lossy(&err).to_string()
+}

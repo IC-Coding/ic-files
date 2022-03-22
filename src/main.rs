@@ -1,5 +1,8 @@
 
 mod dir;
+use std::fs::OpenOptions;
+
+
 fn main() {
-    dir::rmdir("/home/bobby/test");
+    let file = OpenOptions::new().read(true).open("foo.txt");
 }
