@@ -43,7 +43,7 @@ pub fn rm(dir_path: &str) -> String {
     String::from_utf8_lossy(&err).to_string()
 }
 
-//move directory and its contents
+//move directory and its contents (can be used for renaming)
 pub fn mv(old_dir_path: &str, new_dir_path: &str) -> String {
     let err = Command::new("mv").args([old_dir_path,new_dir_path]).output().expect("failed to execute process").stderr;
     String::from_utf8_lossy(&err).to_string()
