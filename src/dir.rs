@@ -4,7 +4,7 @@ use std::process::Command;
 
 //get home directory
 pub fn get_home() -> String {
-    let user = Command::new("whoami").output().expect("failed to execute process").stdout;
+    let user = Command::new("whoami").output().expect("Failed to get home directory").stdout;
     let user_string = String::from_utf8_lossy(&user).replace("\n","");
 
     "/home/".to_owned() + &user_string
@@ -39,18 +39,18 @@ pub fn mk(dir_path: &str) -> std::io::Result<()> {
 
 //delete directory and its contents
 pub fn rm(dir_path: &str) -> String {
-    let err = Command::new("rm").args(["-rf",dir_path]).output().expect("failed to execute process").stderr;
+    let err = Command::new("rm").args(["-rf",dir_path]).output().expect("Failed to delete directory").stderr;
     String::from_utf8_lossy(&err).to_string()
 }
 
 //move directory and its contents (can be used for renaming)
 pub fn mv(old_dir_path: &str, new_dir_path: &str) -> String {
-    let err = Command::new("mv").args([old_dir_path,new_dir_path]).output().expect("failed to execute process").stderr;
+    let err = Command::new("mv").args([old_dir_path,new_dir_path]).output().expect("Failed to move directory").stderr;
     String::from_utf8_lossy(&err).to_string()
 }
 
 //copy directory to another location
 pub fn cp(orginal_path: &str, copy_path: &str) -> String {
-    let err = Command::new("cp").args(["-r",orginal_path,copy_path]).output().expect("failed to execute process").stderr;
+    let err = Command::new("cp").args(["-r",orginal_path,copy_path]).output().expect("Failed to copy directory").stderr;
     String::from_utf8_lossy(&err).to_string()
 }
